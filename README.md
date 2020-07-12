@@ -11,9 +11,9 @@
 ⣷⡝⣿⡞⣿⣿⣿⣿⣿⣿⣿⣿⡟⠋⠁⣠⣤⣤⣦⣽⣿⣿⣿⡿⠋⠘⣿⣿.  
 ⣿⣿⡹⣿⡼⣿⣿⣿⣿⣿⣿⣿⣧⡰⣿⣿⣿⣿⣿⣹⡿⠟⠉⡀⠄⠄⢿⣿. 
 ⣿⣿⣿⣽⣿⣼⣛⠿⠿⣿⣿⣿⣿⣿⣯⣿⠿⢟⣻⡽⢚⣤⡞⠄⠄⠄⢸⣿.   
+
   
-  
-Software Engineer. 🤓. 
+Software Engineer 🤓. 
 Mainly works on backend, using Java and Golang. 
 Currently work in a payment startup in Indonesia, writing app that involves API, Kafka, and Kong Gateway. 
 
