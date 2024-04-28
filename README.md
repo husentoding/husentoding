@@ -1,4 +1,4 @@
-<p> Hey </p>
+<p> Hey, I'm a weekday gitlab coder </p>
 
 <!--
 **husentoding/husentoding** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
