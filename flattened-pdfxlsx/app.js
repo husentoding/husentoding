@@ -12,6 +12,7 @@ const sheetHelper = document.getElementById("sheetHelper");
 const tabs = Array.from(document.querySelectorAll(".tab"));
 const xlsxPanel = document.getElementById("xlsxPanel");
 const pdfPanel = document.getElementById("pdfPanel");
+const previewSection = document.getElementById("previewSection");
 
 const tableStyle = {
   fontFamily: '"IBM Plex Sans", "Segoe UI", sans-serif',
@@ -110,6 +111,7 @@ const setMode = (mode) => {
   });
   if (xlsxPanel) xlsxPanel.classList.toggle("hidden", !isXlsx);
   if (pdfPanel) pdfPanel.classList.toggle("hidden", isXlsx);
+  if (previewSection) previewSection.classList.toggle("hidden", !isXlsx);
   updateResolutionOptions(mode);
   updateExportModeUI();
   setControlsEnabled({ xlsxReady: !!workbook, pdfReady: !!pdfBuffer });
