@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XLSX to Flattened PDF</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="hero">
+        <div class="badge">XLSX to PDF</div>
+        <h1>Flatten spreadsheet tables into image-based PDFs</h1>
+        <p>
+          Upload a spreadsheet, pick a sheet, and export a PDF where the table is
+          embedded as a non-selectable image.
+        </p>
+      </header>
+
+      <section class="panel">
+        <div class="tabs">
+          <button class="tab" data-mode="xlsx" type="button">XLSX</button>
+          <button class="tab active" data-mode="pdf" type="button">PDF</button>
+        </div>
+
+        <div id="xlsxPanel" class="mode-panel hidden">
+          <div class="field">
+            <label for="fileInput">XLSX file</label>
+            <input id="fileInput" type="file" accept=".xlsx" />
+          </div>
+          <div class="field">
+            <label for="sheetSelect">Sheet</label>
+            <select id="sheetSelect" disabled></select>
+            <span id="sheetHelper" class="helper"></span>
+          </div>
+          <div class="field">
+            <label for="exportMode">Export mode</label>
+            <select id="exportMode" disabled>
+              <option value="single">Single PDF (selected sheet)</option>
+              <option value="separate">Separate PDF per sheet</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>How it works</label>
+            <ul class="tutorial">
+              <li>Kalo mau dari xlsx juga bisa, tapi jelek</li>
+              <li>Masukin xlsx nya, terus pilih mau export semua sheet atau satu2</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="pdfPanel" class="mode-panel">
+          <div class="field">
+            <label for="pdfInput">PDF file</label>
+            <input id="pdfInput" type="file" accept=".pdf" />
+          </div>
+          <div class="field">
+            <label>Export</label>
+            <div class="inline-note">All pages will be flattened into a new PDF.</div>
+          </div>
+          <div class="field">
+            <label>How it works</label>
+            <ul class="tutorial">
+              <li>Export dulu xlsx kamu jadi PDF</li>
+              <li>Terus upload disini PDF file nya</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="resolution">Resolution</label>
+          <select id="resolution" disabled>
+            <option value="10">10x</option>
+            <option value="15">15x</option>
+            <option value="20">20x</option>
+            <option value="25">25x</option>
+            <option value="30" selected>30x</option>
+          </select>
+          <span id="resolutionWarning" class="helper"></span>
+        </div>
+        <div class="actions">
+          <button id="exportButton" disabled>Export PDF</button>
+          <span id="status" class="status"></span>
+        </div>
+      </section>
+
+      <section class="preview">
+        <div class="preview-header">
+          <h2>Preview</h2>
+          <span class="preview-note">Styled preview (first rows only).</span>
+        </div>
+        <div class="preview-canvas">
+          <canvas id="previewCanvas" width="900" height="520"></canvas>
+        </div>
+      </section>
+    </div>
+
+    <div id="renderStage" class="render-stage" aria-hidden="true"></div>
+    <script src="lib/xlsx.min.js"></script>
+    <script src="lib/pdf-lib.min.js"></script>
+    <script src="lib/html2canvas.min.js"></script>
+    <script src="lib/pdf.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
