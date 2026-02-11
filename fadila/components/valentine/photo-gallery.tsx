@@ -146,91 +146,53 @@ const animatedPhotoClasses = [
   "animate-photo-drift-c",
 ]
 
-const decorativeHearts = [
-  { left: "8%", top: "12%", delay: "0s", scale: "0.8" },
-  { left: "88%", top: "10%", delay: "0.6s", scale: "1" },
-  { left: "15%", top: "42%", delay: "1.1s", scale: "0.7" },
-  { left: "90%", top: "48%", delay: "1.7s", scale: "0.9" },
-  { left: "10%", top: "78%", delay: "2.1s", scale: "1" },
-  { left: "84%", top: "82%", delay: "2.7s", scale: "0.75" },
-  { left: "4%", top: "24%", delay: "0.4s", scale: "0.65" },
-  { left: "24%", top: "16%", delay: "1.3s", scale: "0.85" },
-  { left: "42%", top: "8%", delay: "1.9s", scale: "0.7" },
-  { left: "58%", top: "18%", delay: "2.4s", scale: "0.95" },
-  { left: "72%", top: "30%", delay: "0.9s", scale: "0.8" },
-  { left: "93%", top: "22%", delay: "1.5s", scale: "0.7" },
-  { left: "6%", top: "58%", delay: "2.2s", scale: "0.9" },
-  { left: "28%", top: "54%", delay: "0.5s", scale: "0.75" },
-  { left: "46%", top: "46%", delay: "1.8s", scale: "1.05" },
-  { left: "64%", top: "62%", delay: "2.6s", scale: "0.8" },
-  { left: "78%", top: "70%", delay: "0.7s", scale: "0.95" },
-  { left: "94%", top: "62%", delay: "1.2s", scale: "0.7" },
-]
+const decorativeHearts = Array.from({ length: 18 }, (_, i) => ({
+  left: `${(i * 17 + 7) % 96}%`,
+  top: `${(i * 23 + 9) % 92}%`,
+  delay: `${((i * 7) % 30) / 10}s`,
+  scale: `${(0.62 + ((i * 5) % 7) / 10).toFixed(2)}`,
+}))
 
-const decorativeSparkles = [
-  { left: "20%", top: "8%", delay: "0.2s", size: "h-4 w-4" },
-  { left: "74%", top: "16%", delay: "1.1s", size: "h-5 w-5" },
-  { left: "6%", top: "38%", delay: "1.9s", size: "h-4 w-4" },
-  { left: "91%", top: "34%", delay: "0.7s", size: "h-3 w-3" },
-  { left: "26%", top: "74%", delay: "1.4s", size: "h-5 w-5" },
-  { left: "78%", top: "82%", delay: "2.2s", size: "h-4 w-4" },
-  { left: "12%", top: "20%", delay: "0.4s", size: "h-3 w-3" },
-  { left: "36%", top: "12%", delay: "1.6s", size: "h-4 w-4" },
-  { left: "58%", top: "10%", delay: "2.3s", size: "h-5 w-5" },
-  { left: "84%", top: "24%", delay: "0.9s", size: "h-4 w-4" },
-  { left: "14%", top: "48%", delay: "1.2s", size: "h-5 w-5" },
-  { left: "38%", top: "40%", delay: "2.1s", size: "h-3 w-3" },
-  { left: "62%", top: "50%", delay: "0.5s", size: "h-4 w-4" },
-  { left: "86%", top: "44%", delay: "1.7s", size: "h-5 w-5" },
-  { left: "18%", top: "88%", delay: "2.5s", size: "h-4 w-4" },
-  { left: "42%", top: "82%", delay: "0.8s", size: "h-3 w-3" },
-  { left: "66%", top: "90%", delay: "1.5s", size: "h-4 w-4" },
-  { left: "92%", top: "76%", delay: "2.2s", size: "h-5 w-5" },
-]
+const decorativeSparkles = Array.from({ length: 18 }, (_, i) => {
+  const sizes = ["h-3 w-3", "h-4 w-4", "h-5 w-5"]
+  return {
+    left: `${(i * 19 + 11) % 96}%`,
+    top: `${(i * 29 + 6) % 92}%`,
+    delay: `${((i * 11) % 28) / 10}s`,
+    size: sizes[i % sizes.length],
+  }
+})
 
-const bottomDecorativeHearts = [
-  { left: "14%", bottom: "12%", delay: "0.3s", scale: "1" },
-  { left: "48%", bottom: "8%", delay: "1.4s", scale: "0.85" },
-  { left: "82%", bottom: "14%", delay: "2.1s", scale: "1.1" },
-  { left: "30%", bottom: "24%", delay: "0.9s", scale: "0.7" },
-  { left: "68%", bottom: "26%", delay: "1.8s", scale: "0.9" },
-  { left: "6%", bottom: "18%", delay: "2.4s", scale: "0.8" },
-  { left: "22%", bottom: "10%", delay: "0.6s", scale: "0.95" },
-  { left: "38%", bottom: "32%", delay: "1.1s", scale: "0.75" },
-  { left: "54%", bottom: "16%", delay: "1.6s", scale: "1" },
-  { left: "72%", bottom: "34%", delay: "2.7s", scale: "0.7" },
-  { left: "90%", bottom: "20%", delay: "0.8s", scale: "0.9" },
-  { left: "12%", bottom: "38%", delay: "1.9s", scale: "0.65" },
-  { left: "44%", bottom: "40%", delay: "2.2s", scale: "0.8" },
-  { left: "62%", bottom: "44%", delay: "0.5s", scale: "0.95" },
-  { left: "80%", bottom: "42%", delay: "1.3s", scale: "0.85" },
-]
+const bottomDecorativeHearts = Array.from({ length: 15 }, (_, i) => ({
+  left: `${(i * 13 + 6) % 96}%`,
+  bottom: `${8 + ((i * 9) % 40)}%`,
+  delay: `${((i * 8) % 30) / 10}s`,
+  scale: `${(0.64 + ((i * 4) % 7) / 10).toFixed(2)}`,
+}))
 
-const bottomDecorativeSparkles = [
-  { left: "8%", bottom: "30%", delay: "0.5s", size: "h-4 w-4" },
-  { left: "56%", bottom: "20%", delay: "1.2s", size: "h-5 w-5" },
-  { left: "90%", bottom: "34%", delay: "2.4s", size: "h-4 w-4" },
-  { left: "18%", bottom: "18%", delay: "0.9s", size: "h-3 w-3" },
-  { left: "34%", bottom: "26%", delay: "1.6s", size: "h-4 w-4" },
-  { left: "48%", bottom: "14%", delay: "2.2s", size: "h-5 w-5" },
-  { left: "66%", bottom: "30%", delay: "0.7s", size: "h-4 w-4" },
-  { left: "78%", bottom: "22%", delay: "1.4s", size: "h-3 w-3" },
-  { left: "94%", bottom: "12%", delay: "2.1s", size: "h-4 w-4" },
-]
+const bottomDecorativeSparkles = Array.from({ length: 9 }, (_, i) => {
+  const sizes = ["h-3 w-3", "h-4 w-4", "h-5 w-5"]
+  return {
+    left: `${(i * 22 + 8) % 96}%`,
+    bottom: `${10 + ((i * 11) % 32)}%`,
+    delay: `${((i * 9) % 26) / 10}s`,
+    size: sizes[(i + 1) % sizes.length],
+  }
+})
 
 const decorativeBlobs = [
-  { left: "-8%", top: "-6%", size: "h-56 w-56", color: "bg-primary/25" },
-  { left: "72%", top: "-10%", size: "h-64 w-64", color: "bg-accent/20" },
-  { left: "-12%", top: "58%", size: "h-64 w-64", color: "bg-primary/20" },
-  { left: "70%", top: "62%", size: "h-72 w-72", color: "bg-accent/20" },
-  { left: "20%", top: "-14%", size: "h-52 w-52", color: "bg-primary/20" },
-  { left: "46%", top: "-12%", size: "h-48 w-48", color: "bg-accent/20" },
-  { left: "88%", top: "6%", size: "h-44 w-44", color: "bg-primary/18" },
-  { left: "-10%", top: "30%", size: "h-52 w-52", color: "bg-accent/18" },
-  { left: "42%", top: "34%", size: "h-56 w-56", color: "bg-primary/16" },
-  { left: "86%", top: "40%", size: "h-52 w-52", color: "bg-accent/18" },
-  { left: "8%", top: "82%", size: "h-56 w-56", color: "bg-primary/20" },
-  { left: "44%", top: "78%", size: "h-60 w-60", color: "bg-accent/18" },
+  { left: "-10%", top: "-8%", size: "h-56 w-56", color: "bg-primary/25" },
+  { left: "76%", top: "-10%", size: "h-60 w-60", color: "bg-accent/20" },
+  { left: "-12%", top: "72%", size: "h-56 w-56", color: "bg-primary/20" },
+  { left: "74%", top: "76%", size: "h-60 w-60", color: "bg-accent/20" },
+  { left: "18%", top: "-14%", size: "h-52 w-52", color: "bg-primary/20" },
+  { left: "42%", top: "-12%", size: "h-48 w-48", color: "bg-accent/18" },
+  { left: "88%", top: "8%", size: "h-44 w-44", color: "bg-primary/16" },
+  { left: "-10%", top: "28%", size: "h-52 w-52", color: "bg-accent/18" },
+  { left: "40%", top: "34%", size: "h-56 w-56", color: "bg-primary/16" },
+  { left: "84%", top: "42%", size: "h-52 w-52", color: "bg-accent/18" },
+  { left: "10%", top: "84%", size: "h-56 w-56", color: "bg-primary/20" },
+  { left: "46%", top: "78%", size: "h-60 w-60", color: "bg-accent/18" },
 ]
 
 const decorativeRings = [
@@ -285,11 +247,11 @@ export function PhotoGallery({ onTimeElapsed, delaySeconds }: PhotoGalleryProps)
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 15% 10%, hsl(var(--primary) / 0.24) 0%, transparent 32%), radial-gradient(circle at 84% 18%, hsl(var(--accent) / 0.2) 0%, transparent 30%), radial-gradient(circle at 50% 92%, hsl(var(--primary) / 0.2) 0%, transparent 46%), linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--secondary) / 0.45) 100%)",
+            "radial-gradient(circle at 18% 10%, hsl(var(--primary) / 0.14) 0%, transparent 34%), radial-gradient(circle at 82% 16%, hsl(var(--accent) / 0.12) 0%, transparent 32%), linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--secondary) / 0.28) 100%)",
         }}
       />
       <div
-        className="pointer-events-none absolute inset-0 opacity-45"
+        className="pointer-events-none absolute inset-0 hidden md:block opacity-45"
         style={{
           backgroundImage:
             "linear-gradient(120deg, transparent 0%, transparent 48%, hsl(var(--primary) / 0.12) 49%, transparent 52%, transparent 100%), linear-gradient(20deg, transparent 0%, transparent 42%, hsl(var(--accent) / 0.1) 43%, transparent 46%, transparent 100%), radial-gradient(circle, hsl(var(--primary) / 0.08) 1px, transparent 1px)",
@@ -297,20 +259,20 @@ export function PhotoGallery({ onTimeElapsed, delaySeconds }: PhotoGalleryProps)
         }}
       />
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-[42vh]"
+        className="pointer-events-none absolute inset-x-0 top-0 hidden h-[42vh] md:block"
         style={{
           backgroundImage:
             "radial-gradient(circle at 18% 0%, hsl(var(--primary) / 0.24) 0%, transparent 48%), radial-gradient(circle at 78% 8%, hsl(var(--accent) / 0.2) 0%, transparent 42%)",
         }}
       />
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-[52vh]"
+        className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-[52vh] md:block"
         style={{
           backgroundImage:
             "radial-gradient(circle at 20% 92%, hsl(var(--primary) / 0.28) 0%, transparent 44%), radial-gradient(circle at 82% 88%, hsl(var(--accent) / 0.24) 0%, transparent 44%), linear-gradient(0deg, hsl(var(--secondary) / 0.3) 0%, transparent 80%)",
         }}
       />
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 hidden md:block">
         {decorativeBlobs.map((blob, index) => (
           <div
             key={`decor-blob-${index}`}
@@ -319,7 +281,7 @@ export function PhotoGallery({ onTimeElapsed, delaySeconds }: PhotoGalleryProps)
           />
         ))}
       </div>
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 hidden md:block">
         {decorativeRings.map((ring, index) => (
           <div
             key={`decor-ring-${index}`}
@@ -328,7 +290,7 @@ export function PhotoGallery({ onTimeElapsed, delaySeconds }: PhotoGalleryProps)
           />
         ))}
       </div>
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 hidden md:block">
         {decorativeHearts.map((heart, index) => (
           <Heart
             key={`decor-heart-${index}`}
@@ -343,7 +305,7 @@ export function PhotoGallery({ onTimeElapsed, delaySeconds }: PhotoGalleryProps)
           />
         ))}
       </div>
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 hidden md:block">
         {decorativeSparkles.map((sparkle, index) => (
           <Sparkles
             key={`decor-sparkle-${index}`}
@@ -356,7 +318,7 @@ export function PhotoGallery({ onTimeElapsed, delaySeconds }: PhotoGalleryProps)
           />
         ))}
       </div>
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 hidden md:block">
         {bottomDecorativeHearts.map((heart, index) => (
           <Heart
             key={`bottom-heart-${index}`}
@@ -371,7 +333,7 @@ export function PhotoGallery({ onTimeElapsed, delaySeconds }: PhotoGalleryProps)
           />
         ))}
       </div>
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 hidden md:block">
         {bottomDecorativeSparkles.map((sparkle, index) => (
           <Sparkles
             key={`bottom-sparkle-${index}`}

@@ -51,7 +51,7 @@ export const config = {
         mapsUrl: "https://maps.app.goo.gl/RoetpbNTLmdjSn4p9",
       },
       {
-        time: "20:00 PM",
+        time: "20:00",
         title: "Dinner",
         venue: "Toku Gunawarman",
         address: "Gunawarman No.39, Jakarta",
