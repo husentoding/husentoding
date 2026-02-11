@@ -1,4 +1,4 @@
-const BASE_PATH = "/fadila"
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "/fadila"
 
 export function withBasePath(path: string): string {
   if (!path.startsWith("/")) {
