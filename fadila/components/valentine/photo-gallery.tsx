@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Heart, X, ChevronLeft, ChevronRight, Play } from "lucide-react"
+import { Heart, X, ChevronLeft, ChevronRight, Play, Sparkles } from "lucide-react"
 import Image from "next/image"
 import { withBasePath } from "@/lib/with-base-path"
 
@@ -140,6 +140,111 @@ const mobileMasonryAspectClasses = [
   "aspect-[5/6]",
 ]
 
+const animatedPhotoClasses = [
+  "animate-photo-drift-a",
+  "animate-photo-drift-b",
+  "animate-photo-drift-c",
+]
+
+const decorativeHearts = [
+  { left: "8%", top: "12%", delay: "0s", scale: "0.8" },
+  { left: "88%", top: "10%", delay: "0.6s", scale: "1" },
+  { left: "15%", top: "42%", delay: "1.1s", scale: "0.7" },
+  { left: "90%", top: "48%", delay: "1.7s", scale: "0.9" },
+  { left: "10%", top: "78%", delay: "2.1s", scale: "1" },
+  { left: "84%", top: "82%", delay: "2.7s", scale: "0.75" },
+  { left: "4%", top: "24%", delay: "0.4s", scale: "0.65" },
+  { left: "24%", top: "16%", delay: "1.3s", scale: "0.85" },
+  { left: "42%", top: "8%", delay: "1.9s", scale: "0.7" },
+  { left: "58%", top: "18%", delay: "2.4s", scale: "0.95" },
+  { left: "72%", top: "30%", delay: "0.9s", scale: "0.8" },
+  { left: "93%", top: "22%", delay: "1.5s", scale: "0.7" },
+  { left: "6%", top: "58%", delay: "2.2s", scale: "0.9" },
+  { left: "28%", top: "54%", delay: "0.5s", scale: "0.75" },
+  { left: "46%", top: "46%", delay: "1.8s", scale: "1.05" },
+  { left: "64%", top: "62%", delay: "2.6s", scale: "0.8" },
+  { left: "78%", top: "70%", delay: "0.7s", scale: "0.95" },
+  { left: "94%", top: "62%", delay: "1.2s", scale: "0.7" },
+]
+
+const decorativeSparkles = [
+  { left: "20%", top: "8%", delay: "0.2s", size: "h-4 w-4" },
+  { left: "74%", top: "16%", delay: "1.1s", size: "h-5 w-5" },
+  { left: "6%", top: "38%", delay: "1.9s", size: "h-4 w-4" },
+  { left: "91%", top: "34%", delay: "0.7s", size: "h-3 w-3" },
+  { left: "26%", top: "74%", delay: "1.4s", size: "h-5 w-5" },
+  { left: "78%", top: "82%", delay: "2.2s", size: "h-4 w-4" },
+  { left: "12%", top: "20%", delay: "0.4s", size: "h-3 w-3" },
+  { left: "36%", top: "12%", delay: "1.6s", size: "h-4 w-4" },
+  { left: "58%", top: "10%", delay: "2.3s", size: "h-5 w-5" },
+  { left: "84%", top: "24%", delay: "0.9s", size: "h-4 w-4" },
+  { left: "14%", top: "48%", delay: "1.2s", size: "h-5 w-5" },
+  { left: "38%", top: "40%", delay: "2.1s", size: "h-3 w-3" },
+  { left: "62%", top: "50%", delay: "0.5s", size: "h-4 w-4" },
+  { left: "86%", top: "44%", delay: "1.7s", size: "h-5 w-5" },
+  { left: "18%", top: "88%", delay: "2.5s", size: "h-4 w-4" },
+  { left: "42%", top: "82%", delay: "0.8s", size: "h-3 w-3" },
+  { left: "66%", top: "90%", delay: "1.5s", size: "h-4 w-4" },
+  { left: "92%", top: "76%", delay: "2.2s", size: "h-5 w-5" },
+]
+
+const bottomDecorativeHearts = [
+  { left: "14%", bottom: "12%", delay: "0.3s", scale: "1" },
+  { left: "48%", bottom: "8%", delay: "1.4s", scale: "0.85" },
+  { left: "82%", bottom: "14%", delay: "2.1s", scale: "1.1" },
+  { left: "30%", bottom: "24%", delay: "0.9s", scale: "0.7" },
+  { left: "68%", bottom: "26%", delay: "1.8s", scale: "0.9" },
+  { left: "6%", bottom: "18%", delay: "2.4s", scale: "0.8" },
+  { left: "22%", bottom: "10%", delay: "0.6s", scale: "0.95" },
+  { left: "38%", bottom: "32%", delay: "1.1s", scale: "0.75" },
+  { left: "54%", bottom: "16%", delay: "1.6s", scale: "1" },
+  { left: "72%", bottom: "34%", delay: "2.7s", scale: "0.7" },
+  { left: "90%", bottom: "20%", delay: "0.8s", scale: "0.9" },
+  { left: "12%", bottom: "38%", delay: "1.9s", scale: "0.65" },
+  { left: "44%", bottom: "40%", delay: "2.2s", scale: "0.8" },
+  { left: "62%", bottom: "44%", delay: "0.5s", scale: "0.95" },
+  { left: "80%", bottom: "42%", delay: "1.3s", scale: "0.85" },
+]
+
+const bottomDecorativeSparkles = [
+  { left: "8%", bottom: "30%", delay: "0.5s", size: "h-4 w-4" },
+  { left: "56%", bottom: "20%", delay: "1.2s", size: "h-5 w-5" },
+  { left: "90%", bottom: "34%", delay: "2.4s", size: "h-4 w-4" },
+  { left: "18%", bottom: "18%", delay: "0.9s", size: "h-3 w-3" },
+  { left: "34%", bottom: "26%", delay: "1.6s", size: "h-4 w-4" },
+  { left: "48%", bottom: "14%", delay: "2.2s", size: "h-5 w-5" },
+  { left: "66%", bottom: "30%", delay: "0.7s", size: "h-4 w-4" },
+  { left: "78%", bottom: "22%", delay: "1.4s", size: "h-3 w-3" },
+  { left: "94%", bottom: "12%", delay: "2.1s", size: "h-4 w-4" },
+]
+
+const decorativeBlobs = [
+  { left: "-8%", top: "-6%", size: "h-56 w-56", color: "bg-primary/25" },
+  { left: "72%", top: "-10%", size: "h-64 w-64", color: "bg-accent/20" },
+  { left: "-12%", top: "58%", size: "h-64 w-64", color: "bg-primary/20" },
+  { left: "70%", top: "62%", size: "h-72 w-72", color: "bg-accent/20" },
+  { left: "20%", top: "-14%", size: "h-52 w-52", color: "bg-primary/20" },
+  { left: "46%", top: "-12%", size: "h-48 w-48", color: "bg-accent/20" },
+  { left: "88%", top: "6%", size: "h-44 w-44", color: "bg-primary/18" },
+  { left: "-10%", top: "30%", size: "h-52 w-52", color: "bg-accent/18" },
+  { left: "42%", top: "34%", size: "h-56 w-56", color: "bg-primary/16" },
+  { left: "86%", top: "40%", size: "h-52 w-52", color: "bg-accent/18" },
+  { left: "8%", top: "82%", size: "h-56 w-56", color: "bg-primary/20" },
+  { left: "44%", top: "78%", size: "h-60 w-60", color: "bg-accent/18" },
+]
+
+const decorativeRings = [
+  { left: "12%", top: "22%", size: "h-44 w-44", color: "border-primary/25" },
+  { left: "74%", top: "18%", size: "h-36 w-36", color: "border-accent/30" },
+  { left: "42%", top: "14%", size: "h-28 w-28", color: "border-primary/20" },
+  { left: "4%", top: "50%", size: "h-40 w-40", color: "border-accent/20" },
+  { left: "86%", top: "56%", size: "h-52 w-52", color: "border-accent/25" },
+  { left: "34%", top: "58%", size: "h-30 w-30", color: "border-primary/25" },
+  { left: "58%", top: "68%", size: "h-34 w-34", color: "border-primary/20" },
+  { left: "18%", top: "76%", size: "h-28 w-28", color: "border-accent/25" },
+  { left: "78%", top: "84%", size: "h-42 w-42", color: "border-primary/25" },
+]
+
 interface PhotoGalleryProps {
   onTimeElapsed: () => void
   delaySeconds: number
@@ -149,6 +254,10 @@ export function PhotoGallery({ onTimeElapsed, delaySeconds }: PhotoGalleryProps)
   const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null)
   const [hoveredPhoto, setHoveredPhoto] = useState<number | null>(null)
   const selectedItem = selectedPhoto !== null ? galleryItems[selectedPhoto] : null
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" })
+  }, [])
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -171,9 +280,113 @@ export function PhotoGallery({ onTimeElapsed, delaySeconds }: PhotoGalleryProps)
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="relative min-h-screen overflow-hidden bg-background">
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 15% 10%, hsl(var(--primary) / 0.24) 0%, transparent 32%), radial-gradient(circle at 84% 18%, hsl(var(--accent) / 0.2) 0%, transparent 30%), radial-gradient(circle at 50% 92%, hsl(var(--primary) / 0.2) 0%, transparent 46%), linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--secondary) / 0.45) 100%)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-0 opacity-45"
+        style={{
+          backgroundImage:
+            "linear-gradient(120deg, transparent 0%, transparent 48%, hsl(var(--primary) / 0.12) 49%, transparent 52%, transparent 100%), linear-gradient(20deg, transparent 0%, transparent 42%, hsl(var(--accent) / 0.1) 43%, transparent 46%, transparent 100%), radial-gradient(circle, hsl(var(--primary) / 0.08) 1px, transparent 1px)",
+          backgroundSize: "42px 42px, 56px 56px, 24px 24px",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[42vh]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 18% 0%, hsl(var(--primary) / 0.24) 0%, transparent 48%), radial-gradient(circle at 78% 8%, hsl(var(--accent) / 0.2) 0%, transparent 42%)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[52vh]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 20% 92%, hsl(var(--primary) / 0.28) 0%, transparent 44%), radial-gradient(circle at 82% 88%, hsl(var(--accent) / 0.24) 0%, transparent 44%), linear-gradient(0deg, hsl(var(--secondary) / 0.3) 0%, transparent 80%)",
+        }}
+      />
+      <div className="pointer-events-none absolute inset-0">
+        {decorativeBlobs.map((blob, index) => (
+          <div
+            key={`decor-blob-${index}`}
+            className={`absolute rounded-full blur-3xl ${blob.size} ${blob.color}`}
+            style={{ left: blob.left, top: blob.top }}
+          />
+        ))}
+      </div>
+      <div className="pointer-events-none absolute inset-0">
+        {decorativeRings.map((ring, index) => (
+          <div
+            key={`decor-ring-${index}`}
+            className={`absolute rounded-full border ${ring.size} ${ring.color}`}
+            style={{ left: ring.left, top: ring.top }}
+          />
+        ))}
+      </div>
+      <div className="pointer-events-none absolute inset-0">
+        {decorativeHearts.map((heart, index) => (
+          <Heart
+            key={`decor-heart-${index}`}
+            className="absolute text-primary/20 animate-pulse"
+            style={{
+              left: heart.left,
+              top: heart.top,
+              animationDelay: heart.delay,
+              transform: `scale(${heart.scale})`,
+            }}
+            fill="currentColor"
+          />
+        ))}
+      </div>
+      <div className="pointer-events-none absolute inset-0">
+        {decorativeSparkles.map((sparkle, index) => (
+          <Sparkles
+            key={`decor-sparkle-${index}`}
+            className={`absolute ${sparkle.size} text-accent/60 animate-pulse`}
+            style={{
+              left: sparkle.left,
+              top: sparkle.top,
+              animationDelay: sparkle.delay,
+            }}
+          />
+        ))}
+      </div>
+      <div className="pointer-events-none absolute inset-0">
+        {bottomDecorativeHearts.map((heart, index) => (
+          <Heart
+            key={`bottom-heart-${index}`}
+            className="absolute text-primary/25 animate-pulse"
+            style={{
+              left: heart.left,
+              bottom: heart.bottom,
+              animationDelay: heart.delay,
+              transform: `scale(${heart.scale})`,
+            }}
+            fill="currentColor"
+          />
+        ))}
+      </div>
+      <div className="pointer-events-none absolute inset-0">
+        {bottomDecorativeSparkles.map((sparkle, index) => (
+          <Sparkles
+            key={`bottom-sparkle-${index}`}
+            className={`absolute ${sparkle.size} text-accent/65 animate-pulse`}
+            style={{
+              left: sparkle.left,
+              bottom: sparkle.bottom,
+              animationDelay: sparkle.delay,
+            }}
+          />
+        ))}
+      </div>
+
       {/* Header */}
-      <header className="py-8 md:py-12 px-4 text-center">
+      <header className="relative z-10 px-4 py-8 text-center md:py-12">
         <div className="flex items-center justify-center gap-3 mb-4">
           <Heart className="w-6 h-6 text-primary" fill="currentColor" />
           <h1 className="font-serif text-3xl md:text-5xl font-semibold text-foreground">
@@ -190,7 +403,7 @@ export function PhotoGallery({ onTimeElapsed, delaySeconds }: PhotoGalleryProps)
       </header>
 
       {/* Gallery Grid */}
-      <main className="max-w-7xl mx-auto px-4 pb-12">
+      <main className="relative z-10 mx-auto max-w-7xl px-4 pb-12">
         <section className="mb-8 md:mb-10">
           <div className="mx-auto grid max-w-5xl items-stretch gap-3 md:grid-cols-[minmax(0,180px)_minmax(0,420px)_minmax(0,180px)] lg:grid-cols-[minmax(0,220px)_minmax(0,460px)_minmax(0,220px)]">
             <div className="hidden md:grid grid-rows-2 gap-3">
@@ -281,6 +494,9 @@ export function PhotoGallery({ onTimeElapsed, delaySeconds }: PhotoGalleryProps)
             const isSideMemory = photo.id >= 100
             const isVideo = false
             const mobileAspectClass = mobileMasonryAspectClasses[photoIndex % mobileMasonryAspectClasses.length]
+            const animatedClass = photo.isAnimated
+              ? `animate-subtle-zoom ${animatedPhotoClasses[photoIndex % animatedPhotoClasses.length]}`
+              : ""
 
             return (
             <div
@@ -311,7 +527,7 @@ export function PhotoGallery({ onTimeElapsed, delaySeconds }: PhotoGalleryProps)
                   alt={photo.caption}
                   fill
                   className={`object-cover transition-transform duration-500 group-hover:scale-110 ${
-                    photo.isAnimated ? "animate-subtle-zoom" : ""
+                    animatedClass
                   }`}
                   sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 />
@@ -421,7 +637,7 @@ export function PhotoGallery({ onTimeElapsed, delaySeconds }: PhotoGalleryProps)
                     src={selectedItem?.src || withBasePath("/placeholder.svg")}
                     alt={selectedItem?.caption || "Memory"}
                     fill
-                    className={`object-contain md:object-cover ${selectedItem?.isAnimated ? "animate-subtle-zoom" : ""}`}
+                    className={`object-contain md:object-cover ${selectedItem?.isAnimated ? "animate-subtle-zoom animate-photo-drift-a" : ""}`}
                     sizes="(max-width: 1024px) 100vw, 80vw"
                     priority
                   />
