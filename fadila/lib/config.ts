@@ -7,9 +7,12 @@ export const config = {
   
   // The secret password (something only they would know)
   secretPassword: "serumpun",
+
+  // Background music URL (paste any YouTube URL)
+  backgroundMusicUrl: "https://youtu.be/GhFSgnvKqm4?list=RDjUrKa6thMCU",
   
   // Delay in seconds before showing the invitation (after entering gallery)
-  invitationDelay: 1,
+  invitationDelay: 5,
 
   // Minimum time to show the loading screen after successful login
   minLoadingSeconds: 5,
