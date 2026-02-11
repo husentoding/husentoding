@@ -3,7 +3,9 @@ const repository = process.env.GITHUB_REPOSITORY ?? ""
 const repositoryName = repository.split("/")[1] ?? ""
 const isUserOrOrgPagesRepo = repositoryName.endsWith(".github.io")
 const repositoryBasePath = repositoryName && !isUserOrOrgPagesRepo ? `/${repositoryName}` : ""
-const basePath = `${repositoryBasePath}/fadila`
+const isProduction = process.env.NODE_ENV === "production"
+const deploymentBasePath = repository ? `${repositoryBasePath}/fadila` : "/fadila"
+const basePath = isProduction ? deploymentBasePath : ""
 
 const nextConfig = {
   output: "export",

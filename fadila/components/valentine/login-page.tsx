@@ -99,7 +99,8 @@ export function LoginPage({ onSuccess, onPrepare }: LoginPageProps) {
           </div>
           <h2 className="font-serif text-3xl text-foreground">Sedikit lagi, mi amor...</h2>
           <p className="mt-2 text-muted-foreground">
-            Sekejap ya sayang, aku lagi siapin sesuatu yang manis buat kamu. Besito dulu. Chotto a moment.
+            Sekejap ya sayang, aku lagi siapin sesuatu yang hopefully manis buat kamu. Dari kemarin aku ngerjain ini lhoooo :)))
+            Besito dulu. Chotto a moment.
           </p>
           <img
             src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"

@@ -129,7 +129,16 @@ const sideMemoriesRight: GalleryItem[] = [
 ]
 
 const galleryItems = [timelapse, ...photos, ...sideMemoriesLeft, ...sideMemoriesRight]
+const mobileGalleryItems = [...photos, ...sideMemoriesLeft, ...sideMemoriesRight]
 const timelapseAspectClass = "aspect-[1080/1920]"
+const mobileMasonryAspectClasses = [
+  "aspect-[4/5]",
+  "aspect-[5/4]",
+  "aspect-[3/4]",
+  "aspect-square",
+  "aspect-[4/3]",
+  "aspect-[5/6]",
+]
 
 interface PhotoGalleryProps {
   onTimeElapsed: () => void
@@ -174,6 +183,9 @@ export function PhotoGallery({ onTimeElapsed, delaySeconds }: PhotoGalleryProps)
         </div>
         <p className="text-muted-foreground text-lg max-w-md mx-auto">
           We have known each other for only 3 months, but it feels i have known you a lot longer than that.
+        </p>
+        <p className="mt-3 text-sm text-muted-foreground/80 max-w-md mx-auto">
+          Bonus for you, sayang: this gallery has a different feel on your phone and on your computer.
         </p>
       </header>
 
@@ -228,8 +240,8 @@ export function PhotoGallery({ onTimeElapsed, delaySeconds }: PhotoGalleryProps)
                 <Play className="h-4 w-4 fill-primary text-primary" />
               </div>
               <div className="absolute inset-x-0 bottom-0 p-4 text-left text-primary-foreground">
-                <p className="font-serif text-lg md:text-xl">Our Story in 9:16</p>
-                <p className="text-sm text-primary-foreground/85">Tap to watch fullscreen</p>
+                <p className="font-serif text-lg md:text-xl">Our Quality Time in 9:16</p>
+                <p className="text-sm text-primary-foreground/85">I Love You ♥️</p>
               </div>
               <div
                 className={`absolute inset-0 bg-foreground/25 transition-opacity duration-300 ${
@@ -260,18 +272,23 @@ export function PhotoGallery({ onTimeElapsed, delaySeconds }: PhotoGalleryProps)
               })}
             </div>
           </div>
+
         </section>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-          {photos.map((photo, photoIndex) => {
-            const index = photoIndex + 1
+        <div className="columns-2 gap-3 space-y-3 md:grid md:grid-cols-3 md:gap-4 md:space-y-0 lg:grid-cols-4">
+          {mobileGalleryItems.map((photo, photoIndex) => {
+            const index = galleryItems.findIndex((item) => item.id === photo.id)
+            const isSideMemory = photo.id >= 100
             const isVideo = false
+            const mobileAspectClass = mobileMasonryAspectClasses[photoIndex % mobileMasonryAspectClasses.length]
 
             return (
             <div
               key={photo.id}
-              className={`relative group cursor-pointer overflow-hidden rounded-xl bg-muted aspect-square ${
-                index === 1 || index === 6 ? "md:col-span-2 md:row-span-2" : ""
+              className={`relative group cursor-pointer overflow-hidden rounded-xl bg-muted break-inside-avoid mb-3 md:mb-0 ${mobileAspectClass} md:aspect-square ${
+                !isSideMemory && (index === 1 || index === 6) ? "md:col-span-2 md:row-span-2" : ""
+              } ${
+                isSideMemory ? "md:hidden" : ""
               }`}
               onClick={() => setSelectedPhoto(index)}
               onMouseEnter={() => setHoveredPhoto(index)}
@@ -309,6 +326,11 @@ export function PhotoGallery({ onTimeElapsed, delaySeconds }: PhotoGalleryProps)
                 <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-foreground/45 to-transparent" />
               )}
 
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-foreground/60 to-transparent md:hidden" />
+              <p className="pointer-events-none absolute inset-x-0 bottom-2 px-2 text-center text-xs text-primary-foreground md:hidden">
+                {photo.caption}
+              </p>
+
               {/* Hover overlay */}
               <div
                 className={`absolute inset-0 bg-foreground/60 flex items-center justify-center transition-opacity duration-300 ${
@@ -343,7 +365,7 @@ export function PhotoGallery({ onTimeElapsed, delaySeconds }: PhotoGalleryProps)
       {/* Lightbox Modal */}
       {selectedPhoto !== null && (
         <div
-          className="fixed inset-0 z-50 bg-foreground/90 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-foreground/90 flex items-center justify-center p-2 md:p-4"
           onClick={() => setSelectedPhoto(null)}
         >
           {/* Close button */}
@@ -377,11 +399,11 @@ export function PhotoGallery({ onTimeElapsed, delaySeconds }: PhotoGalleryProps)
 
           {/* Photo display */}
           <div
-            className="max-w-4xl max-h-[80vh] w-full"
+            className="max-w-5xl max-h-[92vh] w-full"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="bg-card rounded-2xl overflow-hidden shadow-2xl">
-              <div className={selectedItem?.mediaType === "video" ? `${timelapseAspectClass} relative mx-auto w-full max-w-[480px] bg-black/20` : "aspect-video bg-muted relative"}>
+            <div className="bg-card rounded-2xl overflow-hidden shadow-2xl max-h-[90vh]">
+              <div className={selectedItem?.mediaType === "video" ? `${timelapseAspectClass} relative mx-auto w-full max-w-[480px] bg-black/20` : "relative h-[68vh] sm:h-[74vh] md:aspect-video md:h-auto bg-muted"}>
                 {selectedItem?.mediaType === "video" ? (
                   <video
                     src={selectedItem.src}
@@ -399,14 +421,14 @@ export function PhotoGallery({ onTimeElapsed, delaySeconds }: PhotoGalleryProps)
                     src={selectedItem?.src || withBasePath("/placeholder.svg")}
                     alt={selectedItem?.caption || "Memory"}
                     fill
-                    className={`object-cover ${selectedItem?.isAnimated ? "animate-subtle-zoom" : ""}`}
+                    className={`object-contain md:object-cover ${selectedItem?.isAnimated ? "animate-subtle-zoom" : ""}`}
                     sizes="(max-width: 1024px) 100vw, 80vw"
                     priority
                   />
                 )}
               </div>
-              <div className="p-6 text-center">
-                <p className="font-serif text-xl text-foreground">
+              <div className="p-4 md:p-6 text-center">
+                <p className="font-serif text-lg md:text-xl text-foreground">
                   {selectedItem?.caption}
                 </p>
                 <p className="text-sm text-muted-foreground mt-2">
