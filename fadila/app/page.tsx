@@ -75,6 +75,8 @@ export default function ValentinePage() {
   const [isMusicPlaying, setIsMusicPlaying] = useState(true)
   const [isMusicMuted, setIsMusicMuted] = useState(false)
   const musicVideoId = "rywUS-ohqeE"
+  const musicEmbedOrigin = "https://www.youtube.com"
+  const musicEmbedSrc = `${musicEmbedOrigin}/embed/${musicVideoId}?autoplay=1&loop=1&playlist=${musicVideoId}&controls=0&disablekb=1&modestbranding=1&rel=0&iv_load_policy=3&enablejsapi=1&playsinline=1&origin=${encodeURIComponent(typeof window === "undefined" ? "https://husentoding.github.io" : window.location.origin)}`
   const musicFrameRef = useRef<HTMLIFrameElement>(null)
 
   const sendMusicCommand = useCallback((func: string) => {
@@ -84,9 +86,9 @@ export default function ValentinePage() {
         func,
         args: [],
       }),
-      "*",
+      musicEmbedOrigin,
     )
-  }, [])
+  }, [musicEmbedOrigin])
 
   const handleLoginSuccess = () => {
     setIsAuthenticated(true)
@@ -133,7 +135,7 @@ export default function ValentinePage() {
       <div className="pointer-events-none fixed left-0 top-0 h-0 w-0 overflow-hidden" aria-hidden="true">
         <iframe
           ref={musicFrameRef}
-          src={`https://www.youtube-nocookie.com/embed/${musicVideoId}?autoplay=1&loop=1&playlist=${musicVideoId}&controls=0&disablekb=1&modestbranding=1&rel=0&iv_load_policy=3&enablejsapi=1`}
+          src={musicEmbedSrc}
           title="Background music"
           allow="autoplay; encrypted-media"
           referrerPolicy="strict-origin-when-cross-origin"

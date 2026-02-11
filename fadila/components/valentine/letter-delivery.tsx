@@ -184,7 +184,7 @@ export function LetterDelivery({ isDelivered }: LetterDeliveryProps) {
 
       {/* Letter opened - full screen */}
       {isLetterOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foreground/80 backdrop-blur-sm animate-in fade-in duration-500">
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-foreground/80 p-4 backdrop-blur-sm animate-in fade-in duration-500">
           {/* Floating hearts */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {overlayHearts.map((heart, i) => (
@@ -204,7 +204,7 @@ export function LetterDelivery({ isDelivered }: LetterDeliveryProps) {
           </div>
 
           {/* Letter/Envelope opening animation */}
-          <div className="relative max-w-lg w-full animate-in zoom-in-95 duration-500">
+          <div className="relative mx-auto my-10 w-full max-w-lg animate-in zoom-in-95 duration-500">
             {/* Envelope back */}
             <div className="absolute inset-0 bg-card rounded-3xl shadow-2xl" />
             
@@ -217,7 +217,7 @@ export function LetterDelivery({ isDelivered }: LetterDeliveryProps) {
             </div>
 
             {/* Letter content */}
-            <div className="relative bg-card rounded-3xl shadow-2xl overflow-hidden border border-border">
+            <div className="relative max-h-[calc(100vh-5rem)] overflow-y-auto rounded-3xl border border-border bg-card shadow-2xl">
               {/* Decorative header */}
               <div className="bg-gradient-to-r from-primary/90 to-accent/90 p-6 text-center relative">
                 <Sparkles className="absolute top-4 left-4 w-5 h-5 text-primary-foreground/50" />
@@ -228,7 +228,7 @@ export function LetterDelivery({ isDelivered }: LetterDeliveryProps) {
                   You&apos;re Invited
                 </h2>
                 <p className="text-primary-foreground/80 mt-1">
-                  To a very special evening
+                  To our special day plan
                 </p>
               </div>
 
@@ -251,27 +251,49 @@ export function LetterDelivery({ isDelivered }: LetterDeliveryProps) {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 p-4 bg-secondary/50 rounded-xl">
-                    <Clock className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="font-medium text-foreground">Time</p>
-                      <p className="text-muted-foreground">{invitation.time}</p>
+                  {invitation.plan.map((item, index) => (
+                    <div key={`${item.time}-${item.venue}`} className="flex items-start gap-4 p-4 bg-secondary/50 rounded-xl">
+                      <div className="mt-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-primary/15 text-xs font-semibold text-primary flex-shrink-0">
+                        {index + 1}
+                      </div>
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2 text-foreground">
+                          <Clock className="w-4 h-4 text-primary" />
+                          <p className="font-medium">{item.time}</p>
+                        </div>
+                        <p className="font-medium text-foreground">{item.title}</p>
+                        <div className="flex items-start gap-2 text-muted-foreground">
+                          <MapPin className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                          <p className="whitespace-pre-line">{item.venue}{item.address ? `\n${item.address}` : ""}</p>
+                        </div>
+                        {item.dresscode ? (
+                          <div className="flex items-start gap-2 text-muted-foreground">
+                            <Sparkles className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                            <p>
+                              <span className="font-medium text-foreground">Dress Code:</span>{" "}
+                              {item.dresscode}
+                            </p>
+                          </div>
+                        ) : null}
+                        {item.mapsUrl ? (
+                          <a
+                            href={item.mapsUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center text-sm text-primary underline underline-offset-4 hover:text-primary/80"
+                          >
+                            Open in Google Maps
+                          </a>
+                        ) : null}
+                      </div>
                     </div>
-                  </div>
-
-                  <div className="flex items-start gap-4 p-4 bg-secondary/50 rounded-xl">
-                    <MapPin className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="font-medium text-foreground">{invitation.venue}</p>
-                      <p className="text-muted-foreground">{invitation.address}</p>
-                    </div>
-                  </div>
+                  ))}
 
                   <div className="flex items-start gap-4 p-4 bg-secondary/50 rounded-xl">
                     <Sparkles className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-medium text-foreground">Dress Code</p>
-                      <p className="text-muted-foreground">{invitation.dresscode}</p>
+                      <p className="font-medium text-foreground">Notes</p>
+                      <p className="text-muted-foreground">{invitation.notes}</p>
                     </div>
                   </div>
                 </div>
